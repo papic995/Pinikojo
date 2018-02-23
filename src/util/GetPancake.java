@@ -17,10 +17,12 @@ public class GetPancake {
     private DbConnection dbh = DbConnection.getDbConnection();
     private ArrayList<Integer> randomedIds = new ArrayList<Integer>();
     public static void selectedChecker(ToggleGroup izbor, int number) throws Exception {
+    	// All of these methods return true!
         boolean result = ((((RadioButton) izbor.getSelectedToggle()).getText().equals("Slatka") ? new GetPancake().getSweet(number) : ((RadioButton) izbor.getSelectedToggle()).getText().equals("Samo nek je random") ? new GetPancake().getRandom(number) : new GetPancake().getSalty(number)));
     }
 
     private boolean getSweet(int number) throws Exception{
+    	// TODO: WHAT THE FUCK?
         this.id = GetRandomNumber.RandomNumber(4);
         this.resultSet = this.dbh.selectQuery("SELECT name FROM main_slatki WHERE id ='" + this.id + "';");
         while (this.resultSet.next()) {
@@ -47,6 +49,7 @@ public class GetPancake {
     }
 
     private boolean getSalty(int number) throws Exception{
+    	// TODO: Add comments
         this.id = GetRandomNumber.RandomNumber(3);
         this.resultSet = this.dbh.selectQuery("SELECT name FROM main_slani WHERE id ='" + this.id + "';");
         while (this.resultSet.next()) {
@@ -73,6 +76,7 @@ public class GetPancake {
     }
 
     private boolean getRandom(int number) throws Exception {
+    	// TODO: Add comments
         int mainRand = GetRandomNumber.RandomNumber(10);
         if (mainRand < 5) {
             this.id = GetRandomNumber.RandomNumber(3);
