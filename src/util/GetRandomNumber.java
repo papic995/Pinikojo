@@ -9,6 +9,7 @@ public class GetRandomNumber {
 
     public static int RandomNumber(int range){
     	// TODO: Maybe make this inline?
+        // NO!
         Random random = new Random();
         return random.nextInt(range) + 1;
     }
