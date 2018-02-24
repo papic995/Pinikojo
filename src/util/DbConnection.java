@@ -1,5 +1,8 @@
 package util;
 
+import org.sqlite.core.DB;
+
+import java.io.File;
 import java.sql.*;
 
 /**
@@ -9,15 +12,13 @@ import java.sql.*;
 public class DbConnection {
     private Connection dbh;
     private static DbConnection dbConnection;
+    private static final String DbLocation = new File("database\\pinokijoDB").getAbsolutePath();
 
     public DbConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:3306/pinokijoapp";
-            String username = "root";
-            String password = "";
-            this.dbh = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
+            String url = "jdbc:sqlite:" + DbLocation;
+            this.dbh = DriverManager.getConnection(url);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -40,5 +41,11 @@ public class DbConnection {
     public ResultSet selectQuery(String sql) throws SQLException {
         Statement statement = this.dbh.createStatement();
         return statement.executeQuery(sql);
+    }
+
+    public ResultSet prepareStatementQuery (String query, int value) throws SQLException{
+        PreparedStatement preparedStatement = this.dbh.prepareStatement(query);
+        preparedStatement.setInt(1,value);
+        return preparedStatement.executeQuery();
     }
 }

@@ -16,7 +16,6 @@
          <toggleGroup>
             <ToggleGroup fx:id="izbor" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="221.0" layoutY="102.0" mnemonicParsing="false" text="Samo nek je random" toggleGroup="$izbor" />
       <RadioButton layoutX="144.0" layoutY="81.0" mnemonicParsing="false" text="Slatka" toggleGroup="$izbor" />
       <CheckBox fx:id="trueRandom" layoutX="356.0" layoutY="277.0" mnemonicParsing="false" text="Ili i broj priloga random" />
       <TextField fx:id="prilozi" layoutX="144.0" layoutY="272.0" />
